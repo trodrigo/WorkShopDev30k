@@ -1,0 +1,18 @@
+{
+  "name": "desafio01js",
+  "version": "1.0.0",
+  "description": "Challenge01",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "tr.rodrigo@gmail.com"
+  },
+  "author": "THSSolutions",
+  "license": "ISC",
+  "dependencies": {
+    "@stellar/stellar-sdk": "^12.3.0"
+  }
+}

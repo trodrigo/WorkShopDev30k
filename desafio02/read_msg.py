@@ -9,8 +9,11 @@ from stellar_sdk.exceptions import NotFoundError
 from stellar_sdk.exceptions import BadSignatureError
 
 def read():
-    dotenv_path = Path('./.env')
+    dotenv_path = Path('../.env')
     load_dotenv(dotenv_path=dotenv_path)    
+    # Quando o .env está na mesma pasta
+    #load_dotenv() 
+    #     
     # Configurações iniciais
     PRV_KEY = os.getenv('KEY_PRIVATE')
     sender_keypair = Keypair.from_secret(PRV_KEY)

@@ -26,8 +26,12 @@ def create_account(public_key, server):
     return account
 
 def write():
-    load_dotenv()
+    dotenv_path = Path('../.env')
+    load_dotenv(dotenv_path=dotenv_path)    
+    # Quando o .env está na mesma pasta
+    #load_dotenv() 
 
+    # Configurações iniciais       
     PRV_KEY = os.getenv('KEY_PRIVATE')
     sender_keypair = Keypair.from_secret(PRV_KEY)
     # URL do Horizon na Standalone Network

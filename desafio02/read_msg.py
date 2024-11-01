@@ -1,4 +1,7 @@
 import base64
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 from stellar_sdk import Keypair, Network, Server
 from stellar_sdk.transaction_envelope import TransactionEnvelope
 from stellar_sdk import Operation
@@ -6,8 +9,10 @@ from stellar_sdk.exceptions import NotFoundError
 from stellar_sdk.exceptions import BadSignatureError
 
 def read():
+    dotenv_path = Path('./.env')
+    load_dotenv(dotenv_path=dotenv_path)    
     # Configurações iniciais
-    PRV_KEY = "SCOABQQD4DM7D5J677YOUI2QYB2GA35VC6UNG73RYAV6RTZ4B4OLZIXV"
+    PRV_KEY = os.getenv('KEY_PRIVATE')
     sender_keypair = Keypair.from_secret(PRV_KEY)
     PUBLIC_KEY = sender_keypair.public_key
     # URL do Horizon na Standalone Network

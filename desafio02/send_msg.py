@@ -1,4 +1,7 @@
 import base64
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 from stellar_sdk import Keypair, Network, Server, TransactionBuilder
 from stellar_sdk.exceptions import NotFoundError
 from requests import get, RequestException
@@ -23,7 +26,9 @@ def create_account(public_key, server):
     return account
 
 def write():
-    PRV_KEY = "SCOABQQD4DM7D5J677YOUI2QYB2GA35VC6UNG73RYAV6RTZ4B4OLZIXV"
+    load_dotenv()
+
+    PRV_KEY = os.getenv('KEY_PRIVATE')
     sender_keypair = Keypair.from_secret(PRV_KEY)
     # URL do Horizon na Standalone Network
     #server = Server(horizon_url="http://localhost:8000")

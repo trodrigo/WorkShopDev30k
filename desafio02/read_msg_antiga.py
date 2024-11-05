@@ -15,7 +15,7 @@ def read():
     #load_dotenv() 
     #     
     # Configurações iniciais
-    PRV_KEY = os.getenv('KEY_PRIVATE')
+    PRV_KEY = os.getenv('KEY_PRIVATE_ANT')
     sender_keypair = Keypair.from_secret(PRV_KEY)
     PUBLIC_KEY = sender_keypair.public_key
     # URL do Horizon na Standalone Network
@@ -30,7 +30,7 @@ def read():
 
     # Ler o hash da transação do arquivo
     try:
-        with open("tx_hash.txt", "r") as f:
+        with open("tx_hash_ant.txt", "r") as f:
             tx_hash = f.read().strip()
     except FileNotFoundError:
         print("🚨 Arquivo 'tx_hash.txt' não encontrado. Execute o Script 1 primeiro.")
@@ -84,7 +84,6 @@ def read():
 
     # Mensagem original
     mensagem = "DEV30K".encode()
-    mensagem2 = base64.b64encode(mensagem)
 
     # Criar um objeto Keypair a partir da chave pública
     try:
@@ -96,7 +95,7 @@ def read():
 
     # Verificar a assinatura
     try:
-        keypair.verify(mensagem2, assinatura_bytes)
+        keypair.verify(mensagem, assinatura_bytes)
         print(
             "✅ A assinatura é válida. A mensagem foi assinada pela chave pública fornecida."
         )

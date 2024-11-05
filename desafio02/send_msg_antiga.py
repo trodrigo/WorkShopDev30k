@@ -32,7 +32,7 @@ def write():
     #load_dotenv() 
 
     # Configurações iniciais       
-    PRV_KEY = os.getenv('KEY_PRIVATE')
+    PRV_KEY = os.getenv('KEY_PRIVATE_ANT')
     sender_keypair = Keypair.from_secret(PRV_KEY)
     # URL do Horizon na Standalone Network
     #server = Server(horizon_url="http://localhost:8000")
@@ -47,10 +47,10 @@ def write():
     # Mensagem a ser assinada
     mensagem = "DEV30K".encode()
 
-    # Assinar a mensagem    
-    assinatura_b64 = base64.b64encode(mensagem)
-    assinatura = sender_keypair.sign(assinatura_b64)
-    print(f"Mensagem Assinada (base64): {assinatura_b64.decode()}")
+    # Assinar a mensagem
+    assinatura = sender_keypair.sign(mensagem)
+    assinatura_b64 = base64.b64encode(assinatura).decode()
+    print(f"Mensagem Assinada (base64): {assinatura_b64}")
 
     # Chave e valor para a operação manage_data
     data_key = "desafio"
@@ -80,9 +80,9 @@ def write():
 
         # Salvar o hash da transação em um arquivo
         tx_hash = response["hash"]
-        with open("tx_hash.txt", "w", encoding="utf-8") as f:
+        with open("tx_hash_ant.txt", "w", encoding="utf-8") as f:
             f.write(tx_hash)
-        print("Hash da transação salvo em 'tx_hash.txt'.")
+        print("Hash da transação salvo em 'tx_hash_ant.txt'.")
     except Exception as e:
         print("Erro ao enviar a transação:")
         print(e)
